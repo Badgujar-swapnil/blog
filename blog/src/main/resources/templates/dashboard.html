@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/path/to/your/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+            font-size: 2rem;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background-color: #666;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #888;
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 2rem;
+            background-color: #fff;
+        }
+
+        .posts {
+            width: 80%;
+            margin: auto;
+        }
+
+        .posts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .posts ul li {
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .posts ul li a {
+            text-decoration: none;
+            font-size: 1.25rem;
+            color: #333;
+        }
+
+        .posts ul li a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/user/userhome">User Post</a></li>
+            <li><a href="/user/post">Create New Post</a></li>
+            <li><a href="/user/profile">View Profile</a></li>
+            <li><a href="/user/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="posts">
+            <h2>All Posts:</h2>
+            <ul>
+                <!-- Iterate over the posts and display each one -->
+                <li th:each="post : ${posts}">
+                    <a th:href="@{/user/post/{id}(id=${post.id})}" th:text="${post.title}">Post Title</a>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Blog Application</p>
+    </footer>
+</body>
+</html>
